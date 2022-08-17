@@ -1,0 +1,27 @@
+server:
+  port: 8090
+dubbo:
+  application:
+    name: dubbo-demo-consumer
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  consumers:
+    userInfoService1: # 有效 efficient
+      parameters:
+        getUserInfoById:
+          timeout: 4000
+          async: false
+          sent: false
+          retries: 1
+    userInfoService2: # 无效 invalid
+      parameters:
+        getUserInfo:
+          timeout: 1200
+          async: false
+          sent: false
+          retries: 1
+        getUserInfoById:
+          timeout: 2000
+          async: false
+          sent: false
+          retries: 3
